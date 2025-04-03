@@ -88,7 +88,16 @@ bool is_prime(int num) {
 }
 
 Fraction reduce_fraction(Fraction input) {
- //todo
+  int div = 2;
+  while (div <= input.num && div <= input.den) {
+    if (input.num % div == 0 && input.den % div == 0) {
+      input.num /= div;
+      input.den /= div;
+      continue;
+    }
+    div++;
+  }
+  return input;
 }
 
 void test() {
@@ -105,7 +114,7 @@ void test() {
                       Fraction(3, 4),
                     };
 
-  //call function]
+  //call function
   for (int i = 0; i < 4; i++) {
     Fraction input = inputs[i];
     Fraction expect = outputs[i];
