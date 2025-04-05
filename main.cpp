@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <numeric>
 #include <valarray>
 // Adhitya Padmanabhan
 /*
@@ -15,6 +16,7 @@ o	Efficient
 bool is_power_of_2_loop(int);
 bool is_power_of_2_(int);
 bool is_prime(int);
+void reduce_fraction_(int, int);
 void test();
 
 class Fraction {
@@ -71,8 +73,16 @@ bool is_prime(int num) {
   return true;
 }
 
+void reduce_fraction_(int num, int den) {
+  int div = std::gcd(num, den);
+  num /= div;
+  den /= div;
+  std::cout << "the reduced fraction is " << num << "/" << den << "\n";
+}
+
+
 Fraction reduce_fraction(Fraction input) {
-  //improve
+  // in class solution
   int div = 2;
   while (div <= input.num && div <= input.den) {
     if (input.num % div == 0 && input.den % div == 0) {
@@ -83,6 +93,7 @@ Fraction reduce_fraction(Fraction input) {
     div++;
   }
   return input;
+
 }
 
 void test() {
@@ -110,6 +121,7 @@ void test() {
     //printf("%d is not prime\n", 7);
     std::cout << "FAIL\n";
   }
+  reduce_fraction_(2, 4);
   Fraction num1(2, 4);
   std::cout << num1.to_string() << "\n";
   //reduce to min terms
