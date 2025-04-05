@@ -73,6 +73,7 @@ bool is_prime(int num) {
   return true;
 }
 
+// saw the std::gcd function on the google ai result
 void reduce_fraction_(int num, int den) {
   int div = std::gcd(num, den);
   num /= div;
